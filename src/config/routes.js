@@ -1,6 +1,7 @@
 import { Add, Home, Movie, Search, Star, Tv, } from '@mui/icons-material';
 
 import HomePage from '../Pages/Home/Home';
+import WatchListPage from '../Pages/WatchList/WatchList';
 
 const routes = [
   {
@@ -22,7 +23,7 @@ const routes = [
     label: 'Watchlist',
     path: '/watchList',
     icon: <Add />,
-    component: null,
+    component: <WatchListPage />,
   },
   {
     key: 'originals',

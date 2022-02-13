@@ -10,11 +10,33 @@ import routes from './config/routes';
 import logo from './assets/disney-plus-logo.png';
 import { exists } from './utils/utils';
 
+const primaryColor = {
+  main: '#322E3F',
+  light: '#05d1e8',
+  dark: '#002884',
+  contrastText: '#fff',
+};
+
+const secondaryColor = {
+  main: '#f44336',
+  light: '#ff7961',
+  dark: '#ba000d',
+  contrastText: '#05d1e8',
+};
+
+const theme = createTheme({
+  palette: {
+    primary: primaryColor,
+    secondary: secondaryColor,
+  },
+});
+
 const NavBarItem = styled(Link)`
   display: flex;
   align-items: center;
-  color: white;
+  color: ${() => primaryColor?.contrastText};
   text-decoration: none;
+  transition: 0.4s;  
 
   .title{
     font-size: 17px;
@@ -24,6 +46,14 @@ const NavBarItem = styled(Link)`
   .icon{
     font-size: 6px;
     margin-right: 6px;
+  }
+
+  &:hover{
+    transform: scale(1.05);
+    color: #0abbe9;
+    background: -webkit-linear-gradient(101deg, #0072ff, #02f3ff 94%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
   }
 `;
 
@@ -35,27 +65,6 @@ const LogoContainer = styled(Typography)`
 const NavLogo = styled.img`
   height: 3.2rem;
 `;
-
-const primaryColor = {
-  main: '#322E3F',
-  light: '#757ce8',
-  dark: '#002884',
-  contrastText: '#fff',
-};
-
-const secondaryColor = {
-  light: '#ff7961',
-  main: '#f44336',
-  dark: '#ba000d',
-  contrastText: '#000',
-};
-
-const theme = createTheme({
-  palette: {
-    primary: primaryColor,
-    secondary: secondaryColor,
-  },
-});
 
 function App() {
   const [currentPage, setCurrentPage] = useState();
@@ -81,7 +90,7 @@ function App() {
                   </NavBarItem>
                 </Typography>
               ))}
-              <Typography component="div" sx={{ flexGrow: 4 }} style={{ textAlign: 'right' }}>
+              <Typography component="div" sx={{ flexGrow: 5 }} style={{ textAlign: 'right' }}>
                 <Button color="inherit">Login</Button>
               </Typography>
             </Toolbar>
